@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(bookRouter());
+app.use(bookRouter);
 
 const syncTables = async () => {
   await Book.sync();
