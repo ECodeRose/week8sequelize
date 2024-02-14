@@ -1,18 +1,10 @@
 const { Router } = require("express");
-const bookRouter = Router();
+const authorRouter = Router();
 
-const Book = require("./model");
+const { addAuthor, getAllAuthors } = require("./controllers");
 
-const { addBook, getAllBooks } = require("./controllers");
+authorRouter.post("/authors/addAuthor", addAuthor);
 
-bookRouter.post("/books/addBook", addBook);
+authorRouter.get("/authors/getAllAuthors", getAllAuthors);
 
-// get all books
-
-bookRouter.get("/books/getAllBooks", getAllBooks);
-
-// update book author
-
-//delete a single book by title
-
-module.exports = bookRouter;
+module.exports = authorRouter;

@@ -5,6 +5,7 @@ const addGenre = async (req, res) => {
     const genre = await Genre.create({
       genrename: req.body.genrename,
     });
+
     res
       .status(201)
       .json({ message: `${genre.genrename} was added`, genre: genre });

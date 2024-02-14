@@ -23,9 +23,12 @@ const syncTables = () => {
   Genre.hasOne(Book);
   Book.belongsTo(Genre);
 
+  Author.hasOne(Book);
+  Book.belongsTo(Author);
+
   Genre.sync();
-  Book.sync();
   Author.sync();
+  Book.sync();
 };
 
 app.get("/health", (req, res) => {

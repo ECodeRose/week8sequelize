@@ -4,7 +4,7 @@ const addBook = async (req, res) => {
   try {
     const book = await Book.create({
       title: req.body.title,
-      author: req.body.author,
+      AuthorId: req.body.AuthorId,
       GenreId: req.body.GenreId,
     });
 
@@ -16,7 +16,10 @@ const addBook = async (req, res) => {
 
 const getAllBooks = async (req, res) => {
   try {
-    const books = await Book.findAll();
+    const books = await Book.findAll({
+      include: ["Genre", "Author"],
+      attributes: { exclude: ["GenreId", "AuthorId"] },
+    });
     res.status(200).json({ message: `all books`, books: books });
   } catch (error) {
     res.status(500).json({ message: error.message, error: error });

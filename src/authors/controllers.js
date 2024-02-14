@@ -1,29 +1,29 @@
-const Book = require("./model");
+const Author = require("./model");
 
-const addBook = async (req, res) => {
+const addAuthor = async (req, res) => {
   try {
-    const book = await Book.create({
-      title: req.body.title,
-      author: req.body.author,
-      GenreId: req.body.GenreId,
+    const author = await Author.create({
+      authorname: req.body.authorname,
     });
 
-    res.status(201).json({ message: `${book.title} was added`, book: book });
+    res
+      .status(201)
+      .json({ message: `${author.authorname} was added`, author: author });
   } catch (error) {
     res.status(500).json({ message: error.message, error: error });
   }
 };
 
-const getAllBooks = async (req, res) => {
+const getAllAuthors = async (req, res) => {
   try {
-    const books = await Book.findAll();
-    res.status(200).json({ message: `all books`, books: books });
+    const authors = await Author.findAll();
+    res.status(200).json({ message: `all authors`, authors: authors });
   } catch (error) {
     res.status(500).json({ message: error.message, error: error });
   }
 };
 
 module.exports = {
-  addBook: addBook,
-  getAllBooks: getAllBooks,
+  addAuthor: addAuthor,
+  getAllAuthors: getAllAuthors,
 };
