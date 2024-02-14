@@ -3,9 +3,11 @@ const express = require("express");
 
 const Book = require("./books/model");
 const Genre = require("./genres/model");
+const Author = require("./authors/model");
 
 const bookRouter = require("./books/routes");
 const genreRouter = require("./genres/routes");
+const authorRouter = require("./authors/routes");
 
 const port = process.env.PORT || 5001;
 
@@ -15,6 +17,7 @@ app.use(express.json());
 
 app.use(bookRouter);
 app.use(genreRouter);
+app.use(authorRouter);
 
 const syncTables = () => {
   Genre.hasOne(Book);
@@ -22,6 +25,7 @@ const syncTables = () => {
 
   Genre.sync();
   Book.sync();
+  Author.sync();
 };
 
 app.get("/health", (req, res) => {
