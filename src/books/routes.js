@@ -7,7 +7,7 @@ bookRouter.post("/books/addBook", addBook);
 
 // get all books
 
-genreRouter.get("/books/getAllBooks", getAllBooks);
+bookRouter.get("/books/getAllBooks", getAllBooks);
 
 // update book author
 

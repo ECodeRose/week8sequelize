@@ -16,9 +16,12 @@ app.use(express.json());
 app.use(bookRouter);
 app.use(genreRouter);
 
-const syncTables = async () => {
-  await Book.sync();
-  await Genre.sync();
+const syncTables = () => {
+  Genre.hasOne(Book);
+  Book.belongsTo(Genre);
+
+  Genre.sync();
+  Book.sync();
 };
 
 app.get("/health", (req, res) => {
