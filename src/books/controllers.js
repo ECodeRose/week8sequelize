@@ -26,7 +26,14 @@ const getAllBooks = async (req, res) => {
   }
 };
 
+const getSingleBookByTitle = async (req, res) => {
+  const book = await Book.findOne({ where: { title: req.params.cheese } });
+
+  res.send({ message: "success", book: book });
+};
+
 module.exports = {
   addBook: addBook,
   getAllBooks: getAllBooks,
+  getSingleBookByTitle: getSingleBookByTitle,
 };
