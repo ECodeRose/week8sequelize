@@ -3,18 +3,31 @@ const bookRouter = Router();
 
 const Book = require("./model");
 
-const { addBook, getAllBooks, getSingleBookByTitle } = require("./controllers");
+const {
+  addBook,
+  getAllBooks,
+  getSingleBookByTitle,
+  deleteBookByTitle,
+  deleteAllBooks,
+  updateBookByTitle,
+} = require("./controllers");
 
+// Add book
 bookRouter.post("/books/addBook", addBook);
 
-// get all books
+// Get all books
 bookRouter.get("/books/getAllBooks", getAllBooks);
 
-// get a single book by title
-bookRouter.get("books/getSingleBookByTitle/:title", getSingleBookByTitle);
+// Get a single book by title
+bookRouter.get("/books/getSingleBookByTitle/:title", getSingleBookByTitle);
 
-// update book author
+// Update book by title
+bookRouter.put("/books/updateBook/:title", updateBookByTitle);
 
-//delete a single book by title
+// Delete a single book by title
+bookRouter.delete("/books/deleteBook/:title", deleteBookByTitle);
+
+// Delete all books
+bookRouter.delete("/books/", deleteAllBooks);
 
 module.exports = bookRouter;
